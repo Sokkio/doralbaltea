@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Destinos — Dorabaltea Tours</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,500&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --verde:      #1C2E26;
+    --verde-2:    #223b31;
+    --bronce:     #C68A34;
+    --bronce-op:  #C68A3455;
+    --papel:      #EFE8D6;
+    --tinta:      #16231D;
+    --hueso:      #F3EFE4;
+    --sello:      #8B2E1F;
+    --line:       #C68A3444;
+    box-sizing:border-box;
+    padding-top: env(safe-area-inset-top, 0px);
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+  *{box-sizing:inherit; margin:0; padding:0;}
+  html{scroll-behavior:smooth; scroll-padding-top: env(safe-area-inset-top, 0px);}
+  html,body{height:100%;}
+  body{
+    background:var(--verde);
+    color:var(--hueso);
+    font-family:'Instrument Sans', system-ui, -apple-system, sans-serif;
+    font-weight:400;
+    line-height:1.6;
+    overflow-x:hidden;
+  }
+  img{max-width:100%; display:block;}
+  a{color:inherit; text-decoration:none;}
+  .wrap{max-width:1240px; margin:0 auto; padding:0 32px;}
+  h1,h2,h3,h4{
+    font-family:'Fraunces', Georgia, serif;
+    font-weight:600;
+    line-height:1.08;
+    letter-spacing:-0.01em;
+  }
+  em, .em{font-family:'Fraunces', serif; font-style:italic; font-weight:400;}
+
+  header.site{
+    position:sticky; top:0; z-index:50;
+    top: env(safe-area-inset-top, 0px);
+    background:rgba(28,46,38,0.92);
+    backdrop-filter:blur(6px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav{display:flex; align-items:center; justify-content:space-between; padding:20px 32px;}
+  .logo{font-family:'Fraunces', serif; font-size:1.3rem; font-weight:600; letter-spacing:0.01em;}
+  .logo span{color:var(--bronce); font-style:italic; font-weight:400;}
+  .nav-links{display:flex; gap:36px; align-items:center;}
+  .nav-links a{font-size:0.95rem; color:var(--hueso); opacity:0.85; transition:opacity .2s ease;}
+  .nav-links a.current{opacity:1; border-bottom:1px solid var(--bronce);}
+  .nav-links a:hover{opacity:1;}
+  .nav-cta{border:1px solid var(--bronce); padding:10px 20px; border-radius:2px; font-size:0.9rem; color:var(--bronce) !important; opacity:1 !important; white-space:nowrap;}
+  .nav-cta:hover{background:var(--bronce); color:var(--verde) !important;}
+  .menu-btn{display:none; background:none; border:none; color:var(--hueso); font-size:1.6rem; cursor:pointer;}
+
+  .btn-primary{display:inline-block; background:var(--bronce); color:var(--verde); padding:15px 28px; border-radius:2px; font-weight:600; font-size:0.95rem; width:fit-content; transition:transform .2s ease, background .2s ease;}
+  .btn-primary:hover{background:#d69a45; transform:translateY(-1px);}
+  .btn-ghost{display:inline-block; margin-top:16px; font-size:0.9rem; color:var(--hueso); opacity:0.7; border-bottom:1px solid var(--line); padding-bottom:2px; width:fit-content;}
+  .btn-ghost:hover{opacity:1;}
+
+  .breadcrumb{font-size:0.85rem; color:var(--bronce); opacity:0.9; padding:26px 0 0;}
+  .breadcrumb a{opacity:0.7;} .breadcrumb a:hover{opacity:1;}
+
+  .page-hero{padding:60px 0 70px; border-bottom:1px solid var(--line);}
+  .page-hero .kicker{font-family:'Fraunces',serif; font-style:italic; color:var(--bronce); margin-bottom:16px;}
+  .page-hero h1{font-size:clamp(2.2rem,4vw,3.2rem); max-width:18ch; margin-bottom:20px;}
+  .page-hero p{max-width:60ch; color:var(--papel); opacity:0.82; font-size:1.05rem;}
+
+  .philosophy{background:var(--papel); color:var(--tinta); padding:100px 0;}
+  .philosophy .grid{display:grid; grid-template-columns:0.9fr 1.4fr; gap:70px; align-items:start;}
+  .philosophy .label{font-family:'Fraunces', serif; font-style:italic; color:var(--sello); font-size:1rem;}
+  .philosophy h2{font-size:clamp(1.9rem, 3vw, 2.5rem); margin-top:14px;}
+  .philosophy .copy p{font-size:1.08rem; margin-bottom:20px; max-width:62ch; color:#2a352e;}
+  .philosophy .copy p:first-child{font-family:'Fraunces', serif; font-size:1.3rem; color:var(--tinta); font-weight:500;}
+
+  .destinos{background:var(--papel); color:var(--tinta); padding:90px 0;}
+  .destinos-head{display:flex; justify-content:space-between; align-items:flex-end; margin-bottom:38px; gap:24px; flex-wrap:wrap;}
+  .destinos-head h3{font-size:1.6rem;}
+  .destinos-head p{max-width:40ch; color:#4a544d; font-size:0.95rem;}
+  .tag-row{display:flex; flex-wrap:wrap; gap:12px;}
+  .tag{border:1px solid #C68A3488; padding:10px 18px; border-radius:999px; font-size:0.92rem; display:flex; align-items:center; gap:8px; background:#fffdf8;}
+  .tag .dot{width:6px; height:6px; border-radius:50%; background:var(--sello);}
+
+  .country-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:26px; margin-top:20px;}
+  .country-card{background:#fffdf8; border:1px solid #C68A3455; padding:26px; display:flex; flex-direction:column; gap:10px; transition:border-color .2s ease;}
+  .country-card:hover{border-color:var(--sello);}
+  .country-card .n{font-family:'Fraunces',serif; font-size:1.2rem;}
+  .country-card .t{font-size:0.85rem; color:#5a655d;}
+  .country-card svg{width:100%; height:90px;}
+  @media (max-width:880px){.country-grid{grid-template-columns:1fr 1fr;}}
+  @media (max-width:560px){.country-grid{grid-template-columns:1fr;}}
+
+  .experiencias{background:var(--verde); padding:110px 0;}
+  .exp-head{padding-bottom:60px;}
+  .exp-head .label{font-family:'Fraunces',serif; font-style:italic; color:var(--bronce);}
+  .exp-head h2{font-size:clamp(1.9rem,3vw,2.6rem); margin-top:12px; max-width:18ch;}
+  .exp-item{display:flex; align-items:center; margin-bottom:100px;}
+  .exp-item:last-child{margin-bottom:0;}
+  .exp-item.reverse{flex-direction:row-reverse;}
+  .exp-visual{width:56%; aspect-ratio:4/3; position:relative; background:var(--verde-2); border:1px solid var(--line);}
+  .exp-visual svg{width:100%; height:100%;}
+  .exp-copy{width:44%; background:var(--papel); color:var(--tinta); padding:44px 48px; margin-left:-70px; position:relative; z-index:2; box-shadow:0 30px 60px rgba(0,0,0,0.35);}
+  .exp-item.reverse .exp-copy{margin-left:0; margin-right:-70px;}
+  .exp-tag{display:inline-block; background:var(--sello); color:var(--hueso); font-family:'Fraunces', serif; font-size:0.78rem; padding:5px 12px; margin-bottom:18px; transform:rotate(-1.5deg);}
+  .exp-copy h3{font-size:1.5rem; margin-bottom:14px;}
+  .exp-copy p{font-size:0.98rem; color:#37443c; margin-bottom:20px;}
+  .exp-copy .meta{display:flex; gap:22px; font-size:0.85rem; color:#5a655d; border-top:1px solid #C68A3455; padding-top:16px;}
+  @media (max-width:880px){
+    .exp-item, .exp-item.reverse{flex-direction:column;}
+    .exp-visual, .exp-copy{width:100%;}
+    .exp-copy{margin:-40px 20px 0 !important;}
+  }
+
+  .stats-bar{display:flex; gap:50px; flex-wrap:wrap; padding:40px 0; border-top:1px solid var(--line); border-bottom:1px solid var(--line); margin:0 0 80px;}
+  .stats-bar div{display:flex; flex-direction:column; gap:6px;}
+  .stats-bar b{font-family:'Fraunces',serif; font-size:1.7rem; color:var(--bronce);}
+  .stats-bar span{font-size:0.85rem; color:var(--papel); opacity:0.75;}
+
+  .gallery-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:18px; margin-bottom:90px;}
+  .gallery-grid svg{width:100%; aspect-ratio:4/3; border:1px solid var(--line);}
+  @media (max-width:760px){.gallery-grid{grid-template-columns:1fr 1fr;}}
+
+  .itinerary{max-width:780px; margin:0 auto 100px;}
+  .itinerary .day{display:flex; gap:26px; padding:26px 0; border-top:1px solid var(--line);}
+  .itinerary .day:last-child{border-bottom:1px solid var(--line);}
+  .itinerary .num{font-family:'Fraunces',serif; font-style:italic; color:var(--bronce); font-size:1.1rem; width:70px; flex-shrink:0;}
+  .itinerary h4{font-size:1.1rem; color:var(--hueso); margin-bottom:8px;}
+  .itinerary p{font-size:0.92rem; color:var(--papel); opacity:0.78;}
+
+  .testimonio{background:var(--papel); color:var(--tinta); padding:100px 0; text-align:center;}
+  .testimonio blockquote{font-family:'Fraunces', serif; font-style:italic; font-size:clamp(1.5rem, 3vw, 2.1rem); max-width:22ch; margin:0 auto 26px; line-height:1.35; color:var(--verde);}
+  .testimonio cite{font-style:normal; color:#5a655d; font-size:0.95rem;}
+
+  .diario{background:var(--verde); padding:110px 0;}
+  .diario-head{margin-bottom:60px;}
+  .diario-head .label{font-family:'Fraunces',serif; font-style:italic; color:var(--bronce);}
+  .diario-head h2{font-size:clamp(1.9rem,3vw,2.6rem); margin-top:12px;}
+  .diario-grid{display:grid; grid-template-columns:repeat(3, 1fr); gap:36px;}
+  .diario-card{border-top:1px solid var(--line); padding-top:22px;}
+  .diario-card .date{font-size:0.82rem; color:var(--bronce); margin-bottom:12px;}
+  .diario-card h4{font-size:1.2rem; color:var(--hueso); margin-bottom:12px; line-height:1.25;}
+  .diario-card p{font-size:0.92rem; color:var(--papel); opacity:0.78; margin-bottom:16px;}
+  .diario-card a{font-size:0.85rem; color:var(--bronce); border-bottom:1px solid var(--bronce-op);}
+  @media (max-width:880px){.diario-grid{grid-template-columns:1fr; gap:44px;} .philosophy .grid{grid-template-columns:1fr; gap:30px;}}
+
+  .cta-final{background:var(--sello); color:var(--hueso); padding:100px 0; text-align:center;}
+  .cta-final h2{font-size:clamp(1.9rem,3.4vw,2.7rem); margin-bottom:20px;}
+  .cta-final p{max-width:46ch; margin:0 auto 34px; opacity:0.9;}
+  .cta-final .btn-primary{margin:0 auto; background:var(--hueso); color:var(--sello);}
+  .cta-final .btn-primary:hover{background:#fff;}
+
+  .contact-grid{display:grid; grid-template-columns:1fr 1fr; gap:60px; padding:100px 0;}
+  .contact-grid h3{font-size:1.6rem; margin-bottom:18px;}
+  .contact-grid p{color:var(--papel); opacity:0.82; margin-bottom:26px; max-width:44ch;}
+  .field{margin-bottom:18px;}
+  .field label{display:block; font-size:0.85rem; color:var(--bronce); margin-bottom:8px;}
+  .field input, .field textarea{width:100%; background:transparent; border:1px solid var(--line); color:var(--hueso); padding:12px 14px; font-family:'Instrument Sans'; font-size:0.95rem;}
+  .field textarea{min-height:110px; resize:vertical;}
+  .contact-info{display:flex; flex-direction:column; gap:22px;}
+  .contact-info .ci{border-top:1px solid var(--line); padding-top:16px;}
+  .contact-info b{display:block; font-family:'Fraunces',serif; color:var(--bronce); margin-bottom:4px; font-size:0.95rem;}
+  @media (max-width:880px){.contact-grid{grid-template-columns:1fr; gap:40px;}}
+
+  footer{background:var(--verde); padding:70px 0 40px; border-top:1px solid var(--line);}
+  .foot-grid{display:grid; grid-template-columns:1.4fr 1fr 1fr 1fr; gap:40px; padding-bottom:50px;}
+  footer h5{font-size:0.85rem; color:var(--bronce); margin-bottom:16px; font-weight:600;}
+  footer .logo{margin-bottom:14px;}
+  footer p{font-size:0.9rem; color:var(--papel); opacity:0.7; max-width:32ch;}
+  footer ul{list-style:none;}
+  footer li{margin-bottom:10px; font-size:0.9rem;}
+  footer li a{opacity:0.75;} footer li a:hover{opacity:1;}
+  .foot-bottom{display:flex; justify-content:space-between; align-items:center; border-top:1px solid var(--line); padding-top:26px; font-size:0.82rem; color:var(--papel); opacity:0.55; flex-wrap:wrap; gap:12px;}
+  .social{display:flex; gap:14px;}
+  .social a{width:34px; height:34px; border:1px solid var(--line); border-radius:50%; display:flex; align-items:center; justify-content:center;}
+  .social svg{width:15px; height:15px; fill:var(--papel);}
+
+  @media (max-width:900px){
+    .nav-links{position:fixed; inset:0 0 0 auto; top:0; width:78%; max-width:340px; height:100vh; background:var(--verde); flex-direction:column; align-items:flex-start; padding:110px 32px 32px; gap:26px; transform:translateX(100%); transition:transform .35s ease; border-left:1px solid var(--line);}
+    .nav-links.open{transform:translateX(0);}
+    .menu-btn{display:block;}
+    .foot-grid{grid-template-columns:1fr 1fr; gap:34px;}
+  }
+  @media (max-width:520px){.wrap{padding:0 20px;} .foot-grid{grid-template-columns:1fr;}}
+</style>
+</head>
+<body>
+<header class="site">
+  <nav class="nav">
+    <a href="index.html" class="logo">dorabaltea<span>tours</span></a>
+    <button class="menu-btn" id="menuBtn" aria-label="Abrir menú">☰</button>
+    <div class="nav-links" id="navLinks">
+      <a href="index.html" class="">Inicio</a>
+      <a href="destinos.html" class="current">Destinos</a>
+      <a href="nosotros.html" class="">Nosotros</a>
+      <a href="contacto.html" class="nav-cta">Diseña tu viaje</a>
+    </div>
+  </nav>
+</header>
+<div class="wrap breadcrumb"><a href="index.html">Inicio</a> / Destinos</div>
+<section class="page-hero">
+  <div class="wrap">
+    <div class="kicker">El mapa de trabajo</div>
+    <h1>Once países, una misma manera de recorrerlos</h1>
+    <p>No abrimos un destino nuevo hasta haberlo caminado nosotros primero. Esta es la lista de países donde ya tenemos logística, alojamientos y guías propios de confianza.</p>
+  </div>
+</section>
+
+<section class="destinos" style="padding-top:70px;">
+  <div class="wrap">
+    <div class="country-grid">
+
+      <a class="country-card" href="mont-blanc.html">
+        <svg viewBox="0 0 200 90"><rect width="200" height="90" fill="#f6f1e4"/><path d="M0 70 L40 30 L70 55 L100 15 L140 60 L200 40 L200 90 L0 90 Z" fill="#C68A3433"/><path d="M100 15 L92 30 L108 30 L100 45" stroke="#8B2E1F" stroke-width="2" fill="none"/></svg>
+        <div class="n">Francia</div><div class="t">Travesía del Mont Blanc · Chamonix</div>
+      </a>
+      <a class="country-card" href="contacto.html">
+        <svg viewBox="0 0 200 90"><rect width="200" height="90" fill="#f6f1e4"/><path d="M0 60 L50 40 L90 65 L140 20 L200 55 L200 90 L0 90 Z" fill="#C68A3433"/><circle cx="140" cy="20" r="5" fill="#8B2E1F"/></svg>
+        <div class="n">Islandia</div><div class="t">Esquí de travesía y auroras</div>
+      </a>
+      <a class="country-card" href="contacto.html">
+        <svg viewBox="0 0 200 90"><rect width="200" height="90" fill="#f6f1e4"/><path d="M0 65 L60 25 L110 60 L160 30 L200 50 L200 90 L0 90 Z" fill="#C68A3433"/></svg>
+        <div class="n">Italia</div><div class="t">Cinque Terre a pie</div>
+      </a>
+      <a class="country-card" href="contacto.html">
+        <svg viewBox="0 0 200 90"><rect width="200" height="90" fill="#f6f1e4"/><path d="M0 75 Q60 40 120 65 T200 55 L200 90 L0 90 Z" fill="#C68A3433"/></svg>
+        <div class="n">Marruecos</div><div class="t">Desierto del Sáhara y Chegaga</div>
+      </a>
+      <a class="country-card" href="contacto.html">
+        <svg viewBox="0 0 200 90"><rect width="200" height="90" fill="#f6f1e4"/><path d="M0 70 L40 20 L80 60 L120 10 L160 55 L200 30 L200 90 L0 90 Z" fill="#C68A3433"/></svg>
+        <div class="n">Nepal</div><div class="t">Campo base del Annapurna y Everest</div>
+      </a>
+      <a class="country-card" href="contacto.html">
+        <svg viewBox="0 0 200 90"><rect width="200" height="90" fill="#f6f1e4"/><path d="M0 60 L50 45 L90 70 L140 35 L200 50 L200 90 L0 90 Z" fill="#C68A3433"/></svg>
+        <div class="n">Noruega</div><div class="t">Trineos con perros en Laponia</div>
+      </a>
+      <a class="country-card" href="contacto.html">
+        <svg viewBox="0 0 200 90"><rect width="200" height="90" fill="#f6f1e4"/><path d="M0 68 L45 35 L85 62 L130 25 L200 50 L200 90 L0 90 Z" fill="#C68A3433"/></svg>
+        <div class="n">Rumanía</div><div class="t">Cárpatos y bosques vírgenes</div>
+      </a>
+      <a class="country-card" href="contacto.html">
+        <svg viewBox="0 0 200 90"><rect width="200" height="90" fill="#f6f1e4"/><path d="M0 60 L60 40 L110 65 L160 30 L200 45 L200 90 L0 90 Z" fill="#C68A3433"/></svg>
+        <div class="n">España</div><div class="t">Senderismo en Tenerife</div>
+      </a>
+      <a class="country-card" href="contacto.html">
+        <svg viewBox="0 0 200 90"><rect width="200" height="90" fill="#f6f1e4"/><path d="M0 72 Q70 30 140 60 T200 45 L200 90 L0 90 Z" fill="#C68A3433"/></svg>
+        <div class="n">Suecia</div><div class="t">Raquetas de nieve en el Kungsleden</div>
+      </a>
+      <a class="country-card" href="contacto.html">
+        <svg viewBox="0 0 200 90"><rect width="200" height="90" fill="#f6f1e4"/><path d="M0 65 L45 20 L85 58 L125 15 L165 55 L200 35 L200 90 L0 90 Z" fill="#C68A3433"/></svg>
+        <div class="n">Suiza</div><div class="t">Zermatt, Chamonix y spa de montaña</div>
+      </a>
+      <a class="country-card" href="contacto.html">
+        <svg viewBox="0 0 200 90"><rect width="200" height="90" fill="#f6f1e4"/><path d="M0 60 L55 42 L100 66 L150 38 L200 52 L200 90 L0 90 Z" fill="#C68A3433"/></svg>
+        <div class="n">Tanzania</div><div class="t">Ascenso al Kilimanjaro</div>
+      </a>
+
+    </div>
+    <p style="margin-top:34px; font-size:0.9rem; color:#4a544d;">¿Tu destino soñado no está aquí? Escríbenos — casi siempre podemos diseñarlo igualmente.</p>
+  </div>
+</section>
+
+<section class="cta-final">
+  <div class="wrap">
+    <h2>Cuéntanos dónde quieres perderte</h2>
+    <p>Una primera conversación, sin compromiso, para empezar a dibujar tu itinerario.</p>
+    <a href="contacto.html" class="btn-primary">Escríbenos</a>
+  </div>
+</section>
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <div class="logo">dorabaltea<span style="color:var(--bronce); font-style:italic; font-weight:400;">tours</span></div>
+        <p>Agencia de viajes de lujo especializada en experiencias exclusivas y viajes totalmente personalizados a destinos extraordinarios.</p>
+      </div>
+      <div>
+        <h5>Explora</h5>
+        <ul>
+          <li><a href="destinos.html">Destinos</a></li>
+          <li><a href="mont-blanc.html">Travesía del Mont Blanc</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Agencia</h5>
+        <ul>
+          <li><a href="nosotros.html">Nosotros</a></li>
+          <li><a href="contacto.html">Contacto</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Contacto</h5>
+        <ul><li><a href="mailto:hola@dorabalteatours.com">hola@dorabalteatours.com</a></li></ul>
+        <div class="social">
+          <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M12 2c2.7 0 3 .01 4.1.06 1.1.05 1.8.22 2.4.46.6.24 1.1.56 1.6 1.06.5.5.82 1 1.06 1.6.24.6.41 1.3.46 2.4.05 1.1.06 1.4.06 4.1s-.01 3-.06 4.1c-.05 1.1-.22 1.8-.46 2.4a4.3 4.3 0 0 1-1.06 1.6 4.3 4.3 0 0 1-1.6 1.06c-.6.24-1.3.41-2.4.46-1.1.05-1.4.06-4.1.06s-3-.01-4.1-.06c-1.1-.05-1.8-.22-2.4-.46a4.3 4.3 0 0 1-1.6-1.06 4.3 4.3 0 0 1-1.06-1.6c-.24-.6-.41-1.3-.46-2.4C2 15 2 14.7 2 12s.01-3 .06-4.1c.05-1.1.22-1.8.46-2.4.24-.6.56-1.1 1.06-1.6.5-.5 1-.82 1.6-1.06.6-.24 1.3-.41 2.4-.46C9 2.01 9.3 2 12 2Zm0 5a5 5 0 1 0 0 10 5 5 0 0 0 0-10Zm0 8.2a3.2 3.2 0 1 1 0-6.4 3.2 3.2 0 0 1 0 6.4ZM17.4 6a1.2 1.2 0 1 1-2.4 0 1.2 1.2 0 0 1 2.4 0Z"/></svg></a>
+          <a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M13.5 21v-7.6h2.6l.4-3H13.5V8.3c0-.88.25-1.48 1.5-1.48h1.6V4.14C16.3 4.1 15.3 4 14.2 4c-2.3 0-3.9 1.4-3.9 4V10.4H7.7v3h2.6V21h3.2Z"/></svg></a>
+        </div>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 Dorabaltea Tours. Todos los derechos reservados.</span>
+      <span>Diseñado como una bitácora, no como un catálogo.</span>
+    </div>
+  </div>
+</footer>
+<script>
+  const menuBtn = document.getElementById('menuBtn');
+  const navLinks = document.getElementById('navLinks');
+  menuBtn.addEventListener('click', () => navLinks.classList.toggle('open'));
+  navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navLinks.classList.remove('open')));
+</script>
+</body>
+</html>
